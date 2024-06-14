@@ -82,57 +82,20 @@ nav ul li a:hover {
     color: var(--hover-color);
 }
 
-.search-bar {
+.social-icons {
     display: flex;
     align-items: center;
 }
 
-.search-bar input {
-    padding: 0.5rem;
-    border: 1px solid var(--font-color);
-    border-radius: 0.25rem 0 0 0.25rem;
-    outline: none;
-    font-size: var(--font-size-base);
-}
-
-.search-bar button {
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: var(--font-color);
-    color: var(--bg-color);
-    border-radius: 0 0.25rem 0.25rem 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: var(--font-size-base);
-}
-
-.search-bar button:hover {
-    background-color: var(--hover-color);
-}
-
-.search-bar button i {
-    font-size: var(--font-size-base);
-}
-
-.cart {
-    display: flex;
-    align-items: center;
-}
-
-.cart a {
-    text-decoration: none;
+.social-icon {
     color: var(--font-color);
-    font-size: var(--font-size-base);
+    font-size: 1.5rem;
+    margin-left: 1rem;
     transition: color 0.3s;
 }
 
-.cart a:hover {
+.social-icon:hover {
     color: var(--hover-color);
-}
-
-.cart a .bi-cart {
-    font-size: var(--font-size-large);
-    margin-right: 0.5rem;
 }
 
 /* Banner Principal */
@@ -202,48 +165,52 @@ nav ul li a:hover {
     margin-bottom: 2rem;
 }
 
-.promotions .products, .new-arrivals .products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+.products-wrapper {
+    position: relative;
     width: 100%;
+    overflow: hidden; /* Garantir que os cards não ultrapassem os limites */
 }
 
-.promotions .product, .new-arrivals .product {
+.products {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    width: calc(100% + 1rem); /* Ajustar a largura */
+    overflow: hidden; /* Adicionado overflow: hidden */
+}
+
+.product {
     background-color: var(--font-color);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 1rem;
-    width: calc(16.666% - 1rem);
+    min-width: calc(16.666% - 1rem);
+    flex: 0 0 calc(16.666% - 1rem); /* Garantir que os cards não sobreponham */
+    margin-right: 1rem; /* Espaçamento entre os cards */
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.promotions .product:hover, .new-arrivals .product:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
-.promotions .product h3, .new-arrivals .product h3 {
+.product h3 {
     font-size: var(--font-size-base);
     margin-bottom: 0.5rem;
     color: var(--bg-color);
 }
 
-.promotions .product img, .new-arrivals .product img {
+.product img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 1rem;
 }
 
-.promotions .product p, .new-arrivals .product p {
+.product p {
     font-size: var(--font-size-base);
     margin: 0.5rem 0;
     color: var(--bg-color);
 }
 
-.promotions .product .cta-button, .new-arrivals .product .cta-button {
+.product .cta-button {
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: var(--bg-color);
@@ -255,9 +222,36 @@ nav ul li a:hover {
     margin-top: 1rem;
 }
 
-.promotions .product .cta-button:hover, .new-arrivals .product .cta-button:hover {
+.product .cta-button:hover {
     background-color: var(--hover-color);
     color: var(--bg-color);
+}
+
+.slide-prev,
+.slide-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.slide-prev:hover,
+.slide-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slide-prev {
+    left: 0;
+}
+
+.slide-next {
+    right: 0;
 }
 
 /* Seção Sobre Nós */
@@ -302,7 +296,11 @@ nav ul li a:hover {
 .text-content {
     padding: 1rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
+
 
 .mission-values ul {
     padding-left: 0;
@@ -476,12 +474,7 @@ footer .container {
         width: 100%;
     }
 
-    .search-bar {
-        width: 100%;
-        margin: 1rem 0;
-    }
-
-    .cart {
+    .social-icons {
         margin-top: 1rem;
     }
 
